@@ -191,7 +191,6 @@
 }
 
 .rct-icon-half-check::before {
-  opacity: .5;
   content: "\f146";
 }
 
