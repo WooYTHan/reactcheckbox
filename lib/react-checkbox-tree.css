@@ -184,14 +184,17 @@
 
 .rct-icon-uncheck::before {
   content: "\f096";
+  font-size: 24px;
 }
 
 .rct-icon-check::before {
   content: "\f14a";
+  font-size: 24px;
 }
 
 .rct-icon-half-check::before {
   content: "\f146";
+  font-size: 24px;
 }
 
 .rct-icon-leaf::before {
