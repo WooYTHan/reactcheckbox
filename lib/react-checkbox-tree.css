@@ -183,16 +183,16 @@
 }
 
 .rct-icon-uncheck::before {
-  content: "\f10c";
+  content: "\f096";
 }
 
 .rct-icon-check::before {
-  content: "\f111";
+  content: "\f14a";
 }
 
 .rct-icon-half-check::before {
   opacity: .5;
-  content: "\f111";
+  content: "\f146";
 }
 
 .rct-icon-leaf::before {
