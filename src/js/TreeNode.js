@@ -30,9 +30,9 @@ class TreeNode extends React.Component {
         barSize: PropTypes.arrayOf(PropTypes.bool),
         children: PropTypes.node,
         className: PropTypes.string,
-        color: PropTypes.string,
         expandOnClick: PropTypes.bool,
         icon: PropTypes.node,
+        nodeColor: PropTypes.string,
         showCheckbox: PropTypes.bool,
         title: PropTypes.string,
         onClick: PropTypes.func,
@@ -43,7 +43,7 @@ class TreeNode extends React.Component {
         className: null,
         expandOnClick: false,
         barSize: null,
-        color: null,
+        nodeColor: null,
         icon: null,
         showCheckbox: true,
         title: null,
@@ -112,7 +112,11 @@ class TreeNode extends React.Component {
     }
 
     renderCollapseButton() {
-        const { expandDisabled, isLeaf, lang } = this.props;
+        const {
+            expandDisabled,
+            isLeaf,
+            lang,
+        } = this.props;
 
         if (isLeaf) {
             return (
@@ -145,17 +149,21 @@ class TreeNode extends React.Component {
     }
 
     renderCheckboxIcon() {
-        const { checked, icons: { uncheck, check, halfCheck } } = this.props;
+        const { checked, nodeColor } = this.props;
+
+        const btnStyle = {
+            color: nodeColor,
+        };
 
         if (checked === 0) {
-            return uncheck;
+            return (<span className="rct-icon rct-icon-uncheck" />);
         }
 
         if (checked === 1) {
-            return check;
+            return (<span className="rct-icon rct-icon-check" style={btnStyle} />);
         }
 
-        return halfCheck;
+        return (<span className="rct-icon rct-icon-half-check" style={btnStyle} />);
     }
 
     renderNodeIcon() {
@@ -203,19 +211,18 @@ class TreeNode extends React.Component {
     }
 
     renderBarChart() {
-        const { barSize, color } = this.props;
-        console.log(color);
+        const { barSize, nodeColor } = this.props;
         const rectStyle = {
             fill: 'rgb(65,85,181,0.1)',
         };
         const rectStyle2 = {
-            fill: '#4155B5',
+            fill: nodeColor,
         };
         return (
             <span className="bars">
                 <svg width={80} height={15}>
                     <rect width={80} height={15} style={rectStyle} />
-                    <rect width={barSize * 120} height={15} style={rectStyle2} />
+                    <rect width={barSize * 80} height={15} style={rectStyle2} />
                 </svg>
             </span>
         );
@@ -231,13 +238,9 @@ class TreeNode extends React.Component {
             value,
             onClick,
             isLeaf,
-            color,
         } = this.props;
         const clickable = onClick.toString() !== TreeNode.defaultProps.onClick.toString();
         const inputId = `${treeId}-${String(value).split(' ').join('_')}`;
-        const checkBoxStyle = {
-            fill: color,
-        };
 
         const render = [(
             <label key={0} htmlFor={inputId} title={title}>
@@ -248,7 +251,7 @@ class TreeNode extends React.Component {
                     indeterminate={checked === 2}
                     onChange={this.onCheck}
                 />
-                <span className="rct-checkbox" style={checkBoxStyle}>
+                <span className="rct-checkbox">
                     {this.renderCheckboxIcon()}
                 </span>
                 {!isLeaf ? null : this.renderBarChart()}
@@ -290,7 +293,7 @@ class TreeNode extends React.Component {
             ) : null,
             <span key={1} className="rct-title">
                 {label}
-                {!isLeaf ? ` (${barSize})` : null}
+                {!isLeaf ? `(${barSize})` : null}
             </span>,
         ];
 

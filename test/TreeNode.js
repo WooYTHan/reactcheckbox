@@ -73,44 +73,6 @@ describe('<TreeNode />', () => {
         });
     });
 
-    describe('checked', () => {
-        it('should render icons associated with each check state', () => {
-            const iconMap = {
-                0: <span className="rct-icon rct-icon-uncheck" />,
-                1: <span className="rct-icon rct-icon-check" />,
-                2: <span className="rct-icon rct-icon-half-check" />,
-            };
-
-            Object.keys(iconMap).forEach((state) => {
-                const wrapper = shallow(
-                    <TreeNode {...baseProps} checked={parseInt(state, 10)} />,
-                );
-
-                assert.isTrue(wrapper.contains(iconMap[state]));
-            });
-        });
-
-        it('should render an unchecked input element when not set to 1', () => {
-            const wrapper1 = shallow(
-                <TreeNode {...baseProps} checked={0} />,
-            );
-            const wrapper2 = shallow(
-                <TreeNode {...baseProps} checked={2} />,
-            );
-
-            assert.isFalse(wrapper1.find('NativeCheckbox').prop('checked'));
-            assert.isFalse(wrapper2.find('NativeCheckbox').prop('checked'));
-        });
-
-        it('should render a checked input element when set to 1', () => {
-            const wrapper = shallow(
-                <TreeNode {...baseProps} checked={1} />,
-            );
-
-            assert.isTrue(wrapper.find('NativeCheckbox').prop('checked'));
-        });
-    });
-
     describe('className', () => {
         it('should append the supplied className to <li> of the node', () => {
             const wrapper = shallow(
@@ -220,20 +182,6 @@ describe('<TreeNode />', () => {
         });
     });
 
-    describe('icons', () => {
-        it('should replace the default set of icons with the provided values', () => {
-            const wrapper = shallow(
-                <TreeNode {...baseProps} icons={{ uncheck: <span className="other-uncheck" /> }} />,
-            );
-
-            assert.isTrue(wrapper.contains(
-                <span className="rct-checkbox">
-                    <span className="other-uncheck" />
-                </span>,
-            ));
-        });
-    });
-
     describe('label', () => {
         it('should render the node\'s label', () => {
             const wrapper = shallow(
@@ -245,30 +193,6 @@ describe('<TreeNode />', () => {
                     Europa
                 </span>,
             ));
-        });
-    });
-
-    describe('showCheckbox', () => {
-        it('should render a checkbox for the node when true', () => {
-            const wrapper = shallow(
-                <TreeNode {...baseProps} />,
-            );
-
-            assert.isTrue(wrapper.contains(
-                <span className="rct-checkbox">
-                    <span className="rct-icon rct-icon-uncheck" />
-                </span>,
-            ));
-        });
-
-        it('should not render a checkbox or label for the node when false', () => {
-            const wrapper = shallow(
-                <TreeNode {...baseProps} showCheckbox={false} />,
-            );
-
-            assert.isFalse(wrapper.find('label').exists());
-            assert.isFalse(wrapper.find('.rct-checkbox').exists());
-            assert.isTrue(wrapper.find('.rct-bare-label').exists());
         });
     });
 
