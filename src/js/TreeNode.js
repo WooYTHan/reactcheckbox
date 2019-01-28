@@ -21,6 +21,7 @@ class TreeNode extends React.Component {
         optimisticToggle: PropTypes.bool.isRequired,
         showNodeIcon: PropTypes.bool.isRequired,
         treeId: PropTypes.string.isRequired,
+        updateNodeColor: PropTypes.func.isRequired,
         value: PropTypes.oneOfType([
             PropTypes.string,
             PropTypes.number,
@@ -120,7 +121,12 @@ class TreeNode extends React.Component {
     }
 
     handleChangeComplete = (color) => {
+        const { isLeaf } = this.props;
         this.setState({ iconColor: color.hex });
+
+        if (!isLeaf) {
+            this.props.updateNodeColor(color.hex);
+        }
     };
 
     renderCollapseButton() {

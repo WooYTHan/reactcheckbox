@@ -74,6 +74,9 @@ class CheckboxTree extends React.Component {
 
     constructor(props) {
         super(props);
+        this.state = {
+            iconColor: '',
+        };
 
         this.id = `rct-${nanoid(7)}`;
         this.flatNodes = {};
@@ -250,6 +253,10 @@ class CheckboxTree extends React.Component {
         return node.children.some(child => this.flatNodes[child.value].checkState > 0);
     }
 
+    updateNodeColor(color) {
+        this.state.iconColor = color;
+    }
+
     renderTreeNodes(nodes, parent = {}) {
         const {
             expandDisabled,
@@ -303,7 +310,7 @@ class CheckboxTree extends React.Component {
                     showNodeIcon={showNodeIcon}
                     title={showNodeTitle ? node.title || node.label : node.title}
                     barSize={node.size}
-                    nodeColor={node.color}
+                    nodeColor={this.state.iconColor === '' ? node.color : this.state.iconColor}
                     treeId={this.id}
                     value={node.value}
                     onCheck={this.onCheck}
