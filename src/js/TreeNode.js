@@ -55,6 +55,7 @@ class TreeNode extends React.Component {
 
         this.state = {
             isHidden: true,
+            iconColor: '#fff',
         };
 
         this.onCheck = this.onCheck.bind(this);
@@ -115,6 +116,9 @@ class TreeNode extends React.Component {
         onExpand({ value, expanded: !expanded });
     }
 
+    handleChangeComplete = (color) => {
+        this.setState({ iconColor: color.hex });
+    };
 
     renderCollapseButton() {
         const {
@@ -144,11 +148,16 @@ class TreeNode extends React.Component {
     }
 
     renderColorIcon() {
-        const { isHidden } = this.state;
+        const { isHidden, iconColor } = this.state;
+
+        const style1 = {
+            color: iconColor,
+        };
+
         return (
-            <div>
-                <span className="rct-icon rct-icon-color" onClick={() => this.setState({ isHidden: !isHidden })} onKeyPress={() => this.setState({ isHidden: !isHidden })} role="button" tabIndex={0} />
-                {!isHidden && <SketchPicker />}
+            <div className="colorSelector">
+                <span className="rct-icon rct-icon-color" style={style1} onClick={() => this.setState({ isHidden: !isHidden })} onKeyPress={() => this.setState({ isHidden: !isHidden })} role="button" tabIndex={0} />
+                {!isHidden && <SketchPicker onChangeComplete={this.handleChangeComplete} />}
             </div>
         );
     }
