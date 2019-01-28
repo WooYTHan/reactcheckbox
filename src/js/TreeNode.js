@@ -1,7 +1,7 @@
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
-
+import { SketchPicker } from 'react-color';
 import Button from './Button';
 import NativeCheckbox from './NativeCheckbox';
 import iconsShape from './shapes/iconsShape';
@@ -341,6 +341,7 @@ class TreeNode extends React.Component {
                 <span className="rct-text">
                     {this.renderLabel()}
                     <span className="rct-icon rct-icon-color" />
+                    <SketchPicker />
                     {this.renderCollapseButton()}
                 </span>
                 {this.renderChildren()}
