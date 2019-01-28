@@ -179,9 +179,10 @@ class TreeNode extends React.Component {
 
     renderCheckboxIcon() {
         const { checked, nodeColor } = this.props;
+        const { iconColor } = this.state;
 
         const btnStyle = {
-            color: nodeColor,
+            color: iconColor === '' ? nodeColor : iconColor,
         };
 
         if (checked === 0) {
@@ -241,11 +242,13 @@ class TreeNode extends React.Component {
 
     renderBarChart() {
         const { barSize, nodeColor } = this.props;
+        const { iconColor } = this.state;
+
         const rectStyle = {
             fill: 'rgb(65,85,181,0.1)',
         };
         const rectStyle2 = {
-            fill: nodeColor,
+            fill: iconColor === '' ? nodeColor : iconColor,
         };
         return (
             <span className="bars">
