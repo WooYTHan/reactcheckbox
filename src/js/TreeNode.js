@@ -220,9 +220,9 @@ class TreeNode extends React.Component {
         };
         return (
             <span className="bars">
-                <svg width={80} height={15}>
-                    <rect width={80} height={15} style={rectStyle} />
-                    <rect width={barSize * 80} height={15} style={rectStyle2} />
+                <svg width={150} height={20}>
+                    <rect width={150} height={20} style={rectStyle} />
+                    <rect width={barSize * 150} height={20} style={rectStyle2} />
                 </svg>
             </span>
         );
@@ -254,8 +254,10 @@ class TreeNode extends React.Component {
                 <span className="rct-checkbox">
                     {this.renderCheckboxIcon()}
                 </span>
-                {!isLeaf ? null : this.renderBarChart()}
-                {!clickable ? children : null}
+                <span>
+                    {!isLeaf ? null : this.renderBarChart()}
+                    {!clickable ? children : null}
+                </span>
             </label>
         )];
 
@@ -285,13 +287,19 @@ class TreeNode extends React.Component {
             isLeaf,
             barSize,
         } = this.props;
+        const style1 = {
+            top: 0,
+        };
+        const style2 = {
+            paddingTop: '4px',
+        };
         const labelChildren = [
             showNodeIcon ? (
                 <span key={0} className="rct-node-icon">
                     {this.renderNodeIcon()}
                 </span>
             ) : null,
-            <span key={1} className="rct-title">
+            <span key={1} className="rct-title" style={!isLeaf ? style2 : style1}>
                 {label}
                 {!isLeaf ? `(${barSize})` : null}
             </span>,
@@ -332,6 +340,7 @@ class TreeNode extends React.Component {
             <li className={nodeClass}>
                 <span className="rct-text">
                     {this.renderLabel()}
+                    <span className="rct-icon rct-icon-uncheck" />
                     {this.renderCollapseButton()}
                 </span>
                 {this.renderChildren()}

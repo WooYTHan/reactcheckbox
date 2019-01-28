@@ -182,20 +182,6 @@ describe('<TreeNode />', () => {
         });
     });
 
-    describe('label', () => {
-        it('should render the node\'s label', () => {
-            const wrapper = shallow(
-                <TreeNode {...baseProps} label="Europa" value="europa" />,
-            );
-
-            assert.isTrue(wrapper.contains(
-                <span className="rct-title">
-                    Europa
-                </span>,
-            ));
-        });
-    });
-
     describe('showNodeIcon', () => {
         it('should render the node icon when true', () => {
             const wrapper = shallow(
