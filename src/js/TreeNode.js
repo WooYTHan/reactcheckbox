@@ -339,7 +339,7 @@ class TreeNode extends React.Component {
             ) : null,
             <span key={1} className="rct-title" style={!isLeaf ? style2 : style1}>
                 {label}
-                {!isLeaf ? `(${barSize})` : null}
+                {`(${barSize})`}
             </span>,
         ];
 

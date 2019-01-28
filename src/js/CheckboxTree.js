@@ -272,6 +272,8 @@ class CheckboxTree extends React.Component {
         } = this.props;
         const { icons: defaultIcons } = CheckboxTree.defaultProps;
 
+        console.log(this.state.iconColor);
+
         const treeNodes = nodes.map((node) => {
             const key = `${node.value}`;
             const flatNode = this.flatNodes[node.value];
