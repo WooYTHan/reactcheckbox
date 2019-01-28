@@ -287,10 +287,8 @@ class TreeNode extends React.Component {
                     {this.renderCheckboxIcon()}
                 </span>
                 <span>
-                    <div>
-                        {!clickable ? children : null}
-                        {!isLeaf ? null : this.renderBarChart()}
-                    </div>
+                    {!clickable ? children : null}
+                    {!isLeaf ? null : this.renderBarChart()}
                 </span>
             </label>
         )];
