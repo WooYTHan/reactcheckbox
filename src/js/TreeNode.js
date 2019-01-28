@@ -151,6 +151,8 @@ class TreeNode extends React.Component {
     renderColorIcon() {
         const { isHidden, iconColor } = this.state;
 
+        console.log(iconColor);
+
         const style1 = {
             color: iconColor,
         };
