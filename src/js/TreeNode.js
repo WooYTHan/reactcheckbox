@@ -35,6 +35,7 @@ class TreeNode extends React.Component {
         icon: PropTypes.node,
         nodeColor: PropTypes.string,
         showCheckbox: PropTypes.bool,
+        size: PropTypes.arrayOf(PropTypes.bool),
         title: PropTypes.string,
         onClick: PropTypes.func,
     };
@@ -44,6 +45,7 @@ class TreeNode extends React.Component {
         className: null,
         expandOnClick: false,
         barSize: null,
+        size: null,
         nodeColor: null,
         icon: null,
         showCheckbox: true,
@@ -323,7 +325,7 @@ class TreeNode extends React.Component {
             showCheckbox,
             showNodeIcon,
             isLeaf,
-            barSize,
+            size,
         } = this.props;
         const style1 = {
             top: 0,
@@ -339,7 +341,7 @@ class TreeNode extends React.Component {
             ) : null,
             <span key={1} className="rct-title" style={!isLeaf ? style2 : style1}>
                 {label}
-                {`(${barSize})`}
+                {`(${size})`}
             </span>,
         ];
 
