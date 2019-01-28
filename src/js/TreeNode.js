@@ -54,6 +54,8 @@ class TreeNode extends React.Component {
         super(props);
         const nodeColor = this.props;
 
+        console.log(nodeColor);
+
         this.state = {
             isHidden: true,
             iconColor: nodeColor,
