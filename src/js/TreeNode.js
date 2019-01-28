@@ -340,7 +340,7 @@ class TreeNode extends React.Component {
             <li className={nodeClass}>
                 <span className="rct-text">
                     {this.renderLabel()}
-                    <span className="rct-icon rct-icon-uncheck" />
+                    <span className="rct-icon rct-icon-color" />
                     {this.renderCollapseButton()}
                 </span>
                 {this.renderChildren()}
