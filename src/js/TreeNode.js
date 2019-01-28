@@ -288,9 +288,7 @@ class TreeNode extends React.Component {
                 </span>
                 <span>
                     {!clickable ? children : null}
-                    <div className="barDiv">
-                        {!isLeaf ? null : this.renderBarChart()}
-                    </div>
+                    {!isLeaf ? null : <div className="barDiv">{this.renderBarChart()}</div>}
                 </span>
             </label>
         )];
