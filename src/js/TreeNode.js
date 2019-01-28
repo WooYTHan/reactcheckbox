@@ -58,7 +58,7 @@ class TreeNode extends React.Component {
 
         this.state = {
             isHidden: true,
-            iconColor: nodeColor,
+            iconColor: '',
         };
 
         this.onCheck = this.onCheck.bind(this);
@@ -153,10 +153,10 @@ class TreeNode extends React.Component {
     renderColorIcon() {
         const { isHidden, iconColor } = this.state;
 
-        console.log(iconColor);
+        const { nodeColor } = this.props;
 
         const style1 = {
-            color: iconColor,
+            color: iconColor === '' ? nodeColor : iconColor,
         };
 
         return (
