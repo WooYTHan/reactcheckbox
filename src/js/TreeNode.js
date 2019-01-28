@@ -53,6 +53,10 @@ class TreeNode extends React.Component {
     constructor(props) {
         super(props);
 
+        this.state = {
+            isHidden: true,
+        };
+
         this.onCheck = this.onCheck.bind(this);
         this.onClick = this.onClick.bind(this);
         this.onExpand = this.onExpand.bind(this);
@@ -111,6 +115,7 @@ class TreeNode extends React.Component {
         onExpand({ value, expanded: !expanded });
     }
 
+
     renderCollapseButton() {
         const {
             expandDisabled,
@@ -135,6 +140,16 @@ class TreeNode extends React.Component {
             >
                 {this.renderCollapseIcon()}
             </Button>
+        );
+    }
+
+    renderColorIcon() {
+        const { isHidden } = this.state;
+        return (
+            <div>
+                <span className="rct-icon rct-icon-color" onClick={() => this.setState({ isHidden: !isHidden })} onKeyPress={() => this.setState({ isHidden: !isHidden })} role="button" tabIndex={0} />
+                {!isHidden && <SketchPicker />}
+            </div>
         );
     }
 
@@ -340,8 +355,7 @@ class TreeNode extends React.Component {
             <li className={nodeClass}>
                 <span className="rct-text">
                     {this.renderLabel()}
-                    <span className="rct-icon rct-icon-color" />
-                    <SketchPicker />
+                    {this.renderColorIcon()}
                     {this.renderCollapseButton()}
                 </span>
                 {this.renderChildren()}
