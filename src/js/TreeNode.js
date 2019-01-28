@@ -252,9 +252,9 @@ class TreeNode extends React.Component {
         };
         return (
             <span className="bars">
-                <svg width={150} height={20}>
-                    <rect width={150} height={20} style={rectStyle} />
-                    <rect width={barSize * 150} height={20} style={rectStyle2} />
+                <svg width={150} height={10}>
+                    <rect width={150} height={10} style={rectStyle} />
+                    <rect width={barSize * 150} height={10} style={rectStyle2} />
                 </svg>
             </span>
         );
@@ -288,7 +288,7 @@ class TreeNode extends React.Component {
                 </span>
                 <span>
                     {!clickable ? children : null}
-                    <div>
+                    <div className="barDiv">
                         {!isLeaf ? null : this.renderBarChart()}
                     </div>
                 </span>
