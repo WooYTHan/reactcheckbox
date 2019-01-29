@@ -150,7 +150,7 @@ class TreeNode extends React.Component {
         const { isHidden } = this.state;
 
         if (this.wrapperRef && !this.wrapperRef.contains(event.target)) {
-            this.setState({ isHidden: !isHidden });
+            this.setState({ isHidden: isHidden === true ? isHidden : !isHidden });
         }
     }
 
