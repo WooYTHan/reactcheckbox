@@ -192,8 +192,10 @@ class TreeNode extends React.Component {
 
         return (
             <div className="colorSelector">
-                <span className="rct-icon rct-icon-color" ref={this.setWrapperRef} style={style1} onClick={() => this.setState({ isHidden: !isHidden })} onKeyPress={() => this.setState({ isHidden: !isHidden })} role="button" tabIndex={0} />
-                {!isHidden && <SketchPicker onChangeComplete={this.handleChangeComplete} />}
+                <span ref={this.setWrapperRef}>
+                    <span className="rct-icon rct-icon-color" style={style1} onClick={() => this.setState({ isHidden: !isHidden })} onKeyPress={() => this.setState({ isHidden: !isHidden })} role="button" tabIndex={0} />
+                    {!isHidden && <SketchPicker onChangeComplete={this.handleChangeComplete} />}
+                </span>
             </div>
         );
     }
