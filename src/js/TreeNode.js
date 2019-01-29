@@ -1,7 +1,7 @@
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
-import { BlockPicker } from 'react-color';
+import { SketchPicker } from 'react-color';
 import Button from './Button';
 import NativeCheckbox from './NativeCheckbox';
 import iconsShape from './shapes/iconsShape';
@@ -150,7 +150,7 @@ class TreeNode extends React.Component {
         const { isHidden } = this.state;
 
         if (this.wrapperRef && !this.wrapperRef.contains(event.target)) {
-            this.setState({ isHidden: isHidden === true ? isHidden : !isHidden });
+            this.setState({ isHidden: isHidden === false ? isHidden : !isHidden });
         }
     }
 
@@ -193,7 +193,7 @@ class TreeNode extends React.Component {
         return (
             <div className="colorSelector" ref={this.setWrapperRef}>
                 <span className="rct-icon rct-icon-color" style={style1} onClick={() => this.setState({ isHidden: !isHidden })} onKeyPress={() => this.setState({ isHidden: !isHidden })} role="button" tabIndex={0} />
-                {!isHidden && <BlockPicker onChangeComplete={this.handleChangeComplete} />}
+                {!isHidden && <SketchPicker onChangeComplete={this.handleChangeComplete} />}
             </div>
         );
     }
