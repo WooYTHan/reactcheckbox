@@ -149,7 +149,7 @@ class TreeNode extends React.Component {
     handleClickOutside(event) {
         const { isHidden } = this.state;
 
-        if (this.wrapperRef && !this.wrapperRef.contains(event.target) && event.target.parent.className !== 'sketch-picker ') {
+        if (this.wrapperRef && !this.wrapperRef.contains(event.target)) {
             this.setState({ isHidden: isHidden === true ? isHidden : !isHidden });
         }
     }
