@@ -67,6 +67,17 @@ class TreeNode extends React.Component {
         this.onCheck = this.onCheck.bind(this);
         this.onClick = this.onClick.bind(this);
         this.onExpand = this.onExpand.bind(this);
+
+        this.setWrapperRef = this.setWrapperRef.bind(this);
+        this.handleClickOutside = this.handleClickOutside.bind(this);
+    }
+
+    componentDidMount() {
+        document.addEventListener('mousedown', this.handleClickOutside);
+    }
+
+    componentWillUnmount() {
+        document.removeEventListener('mousedown', this.handleClickOutside);
     }
 
     onCheck() {
@@ -122,6 +133,10 @@ class TreeNode extends React.Component {
         onExpand({ value, expanded: !expanded });
     }
 
+    setWrapperRef(node) {
+        this.wrapperRef = node;
+    }
+
     handleChangeComplete = (color) => {
         const { isLeaf } = this.props;
         this.setState({ iconColor: color.hex });
@@ -130,6 +145,14 @@ class TreeNode extends React.Component {
             this.props.updateNodeColor(color.hex);
         }
     };
+
+    handleClickOutside(event) {
+        const { isHidden } = this.state;
+
+        if (this.wrapperRef && !this.wrapperRef.contains(event.target)) {
+            this.setState({ isHidden: !isHidden });
+        }
+    }
 
     renderCollapseButton() {
         const {
@@ -169,7 +192,7 @@ class TreeNode extends React.Component {
 
         return (
             <div className="colorSelector">
-                <span className="rct-icon rct-icon-color" style={style1} onClick={() => this.setState({ isHidden: !isHidden })} onKeyPress={() => this.setState({ isHidden: !isHidden })} role="button" tabIndex={0} />
+                <span className="rct-icon rct-icon-color" ref={this.setWrapperRef} style={style1} onClick={() => this.setState({ isHidden: !isHidden })} onKeyPress={() => this.setState({ isHidden: !isHidden })} role="button" tabIndex={0} />
                 {!isHidden && <SketchPicker onChangeComplete={this.handleChangeComplete} />}
             </div>
         );
